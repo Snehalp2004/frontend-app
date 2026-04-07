@@ -81,8 +81,8 @@ export interface NotificationItem {
   providedIn: 'root'
 })
 export class TaskService {
-  private readonly baseUrl = 'http://localhost:5000/api/tasks';
-  private readonly requestUrl = 'http://localhost:5000/api/requests';
+  private readonly baseUrl = 'https://backend-api-hirehelper.onrender.com/api/tasks';
+  private readonly requestUrl = 'https://backend-api-hirehelper.onrender.com/api/requests';
   private readonly pendingTaskKey = 'pendingCreatedTask';
   private readonly localNotificationsKey = 'hirehelper_local_notifications';
   private readonly offersStorageKeyPrefix = 'hirehelper_offers';
@@ -130,7 +130,7 @@ export class TaskService {
   }
 
   getNotifications(): Observable<NotificationItem[]> {
-    return this.http.get<unknown>('http://localhost:5000/api/notifications').pipe(
+    return this.http.get<unknown>('https://backend-api-hirehelper.onrender.com/api/notifications').pipe(
       map((response) => {
         const notifications = [
           ...this.getLocalNotifications(),
@@ -150,13 +150,13 @@ export class TaskService {
       return of({ message: 'Notification deleted successfully' });
     }
 
-    return this.http.delete<{ message: string }>(`http://localhost:5000/api/notifications/${id}`).pipe(
+    return this.http.delete<{ message: string }>(`https://backend-api-hirehelper.onrender.com/api/notifications/${id}`).pipe(
       tap(() => this.refreshNotificationCount())
     );
   }
 
   deleteAllNotifications(): Observable<{ message: string; deletedCount: number }> {
-    return this.http.delete<{ message: string; deletedCount: number }>('http://localhost:5000/api/notifications').pipe(
+    return this.http.delete<{ message: string; deletedCount: number }>('https://backend-api-hirehelper.onrender.com/api/notifications').pipe(
       tap(() => {
         this.clearLocalNotifications();
         this.notificationSubject.next(0);
@@ -165,7 +165,7 @@ export class TaskService {
   }
 
   markAllNotificationsAsRead(): Observable<{ message: string; updatedCount: number }> {
-    return this.http.put<{ message: string; updatedCount: number }>('http://localhost:5000/api/notifications/read-all', {}).pipe(
+    return this.http.put<{ message: string; updatedCount: number }>('https://backend-api-hirehelper.onrender.com/api/notifications/read-all', {}).pipe(
       tap(() => this.markLocalNotificationsAsRead())
     );
   }

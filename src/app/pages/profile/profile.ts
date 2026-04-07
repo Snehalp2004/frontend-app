@@ -15,7 +15,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./profile.css']
 })
 export class ProfileComponent implements OnInit {
-  private readonly apiOrigin = 'http://localhost:5000';
+  private readonly apiOrigin = 'https://backend-api-hirehelper.onrender.com';
   user: AppUser | null = null;
   error = '';
   pwdError = '';

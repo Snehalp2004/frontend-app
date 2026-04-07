@@ -12,7 +12,7 @@ import { NotificationItem, TaskService } from '../../services/task.service';
   styleUrls: ['./workspace-header.css']
 })
 export class WorkspaceHeaderComponent implements OnInit, OnDestroy {
-  private readonly apiOrigin = 'http://localhost:5000';
+  private readonly apiOrigin = 'https://backend-api-hirehelper.onrender.com';
   @Input() sectionLabel = 'Workspace';
   @Input() title = '';
   @Input() subtitle = '';
