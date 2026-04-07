@@ -38,8 +38,8 @@ export interface UpdateProfilePayload {
 })
 export class AuthService {
 
-  baseUrl = "http://localhost:5000/api/auth";
-  userBaseUrl = "http://localhost:5000/api/users";
+baseUrl = "https://backend-api-hirehelper.onrender.com/api/auth";
+userBaseUrl = "https://backend-api-hirehelper.onrender.com/api/users";
   private readonly userSubject = new BehaviorSubject<AppUser | null>(null);
   readonly user$ = this.userSubject.asObservable();
 
@@ -78,7 +78,7 @@ export class AuthService {
   updateProfilePicture(file: File): Observable<{ message: string; profile_picture: string }> {
     const formData = new FormData();
     formData.append('profile_picture', file);
-    return this.http.put<{ message: string; profile_picture: string }>('http://localhost:5000/api/profile/profile-picture', formData);
+    return this.http.put<{ message: string; profile_picture: string }>('https://backend-api-hirehelper.onrender.com/api/profile/profile-picture', formData);
   }
 
   getCurrentUser(): Observable<AppUser> {
