@@ -1,0 +1,147 @@
+<app-workspace-header
+  sectionLabel=""
+  title="Add Task"
+  subtitle="Post a clear task with time and location so other users can discover it quickly.">
+</app-workspace-header>
+<!-- //frontend  -->
+<section class="content">
+  <form class="task-form" [formGroup]="taskForm" (ngSubmit)="addTask()">
+    <div class="form-grid">
+      <label class="full">
+        <span>Title *</span>
+        <input type="text" formControlName="title" placeholder="Need help moving a sofa" />
+        <small class="field-error" *ngIf="f.title.touched && f.title.invalid">Title is required.</small>
+      </label>
+
+      <label class="full">
+        <span>Description *</span>
+        <textarea formControlName="description" rows="4" placeholder="Add the task details, expected effort, and any useful notes."></textarea>
+        <small class="field-error" *ngIf="f.description.touched && f.description.invalid">Description is required.</small>
+      </label>
+
+      <label>
+        <span>Location *</span>
+        <input type="text" formControlName="location" placeholder="Indore, Vijay Nagar" />
+        <small class="field-error" *ngIf="f.location.touched && f.location.invalid">Location is required.</small>
+      </label>
+
+      <label>
+        <span>Category *</span>
+        <input type="text" formControlName="category" placeholder="Cleaning" />
+        <small class="field-error" *ngIf="f.category.touched && f.category.invalid">Category is required.</small>
+      </label>
+
+      <label>
+        <span>Urgency *</span>
+        <select formControlName="urgency">
+          <option value="LOW">Low</option>
+          <option value="MEDIUM">Medium</option>
+          <option value="HIGH">High</option>
+        </select>
+      </label>
+
+      <label>
+        <span>Budget (INR) *</span>
+        <input type="number" min="1" formControlName="budget" placeholder="1200" />
+        <small class="field-error" *ngIf="f.budget.touched && f.budget.invalid">Enter a valid budget.</small>
+      </label>
+
+      <label>
+        <span>Helpers Needed *</span>
+        <input type="number" min="1" formControlName="helpers_needed" placeholder="1" />
+        <small class="field-error" *ngIf="f.helpers_needed.touched && f.helpers_needed.invalid">Enter helper count.</small>
+      </label>
+
+      <label>
+        <span>Duration (hours) *</span>
+        <input type="number" min="0.5" step="0.5" formControlName="duration_hours" placeholder="3" />
+        <small class="field-error" *ngIf="f.duration_hours.touched && f.duration_hours.invalid">Enter task duration.</small>
+      </label>
+
+      <label>
+        <span>Tools Required</span>
+        <select formControlName="tools_required">
+          <option [ngValue]="false">No</option>
+          <option [ngValue]="true">Yes</option>
+        </select>
+      </label>
+
+      <label>
+        <span>Vehicle Required</span>
+        <select formControlName="vehicle_required">
+          <option [ngValue]="false">No</option>
+          <option [ngValue]="true">Yes</option>
+        </select>
+      </label>
+
+      <label>
+        <span>Contact Method *</span>
+        <select formControlName="contact_method">
+          <option value="WhatsApp">WhatsApp</option>
+          <option value="Call">Call</option>
+          <option value="Phone">Phone</option>
+        </select>
+      </label>
+
+      <label>
+        <span>Start Time *</span>
+        <input type="datetime-local" formControlName="start_time" />
+        <small class="field-error" *ngIf="f.start_time.touched && f.start_time.invalid">Start time is required.</small>
+      </label>
+
+      <label>
+        <span>End Time</span>
+        <input type="datetime-local" formControlName="end_time" />
+      </label>
+
+      <label>
+        <span>Picture URL *</span>
+        <input type="url" formControlName="picture" placeholder="https://example.com/image.jpg" />
+        <small class="field-error" *ngIf="f.picture.touched && f.picture.invalid">Picture URL is required.</small>
+      </label>
+
+      <label class="full">
+        <span>Special Instructions</span>
+        <textarea formControlName="special_instructions" rows="3" placeholder="Bring cleaning supplies"></textarea>
+      </label>
+    </div>
+
+    <div class="actions" (click)="$event.stopPropagation()">
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Creating...' : 'Create Task' }}
+      </button>
+      <p class="muted">Required fields are marked with *.</p>
+    </div>
+  </form>
+
+  <div class="info-card">
+    <p class="info-kicker">Posting notes</p>
+    <h3>Before you post</h3>
+    <ul class="info-list">
+      <li>
+        <strong>Write a precise title</strong>
+        Mention the task and location in a few words so helpers can scan quickly.
+      </li>
+      <li>
+        <strong>Describe scope and constraints</strong>
+        Include exact work, floor/area details, required tools, and anything helpers must bring.
+      </li>
+      <li>
+        <strong>Set realistic timing and budget</strong>
+        Keep start time accurate, add duration, and match budget to expected effort.
+      </li>
+      <li>
+        <strong>Use clear contact preferences</strong>
+        Choose your contact method and mention urgency to speed up the right responses.
+      </li>
+    </ul>
+    <div class="info-strip">
+      <span class="status-chip">Clear title</span>
+      <span class="status-chip">Accurate budget</span>
+      <span class="status-chip">Realistic duration</span>
+      <span class="status-chip">Safety first</span>
+    </div>
+  </div>
+
+  <p class="error-banner" *ngIf="error">{{ error }}</p>
+</section>

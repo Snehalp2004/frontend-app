@@ -1,0 +1,365 @@
+.header {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 50;
+}
+
+.topbar,
+.notification-button,
+.topbar-panel,
+.profile-card,
+.notification-panel {
+  background: rgba(15, 23, 42, 0.72);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 16px 36px rgba(2, 6, 23, 0.3);
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  padding: 18px 22px;
+  border-radius: 20px;
+  position: relative;
+  z-index: 60;
+  overflow: visible;
+}
+
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+.title-block h2 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 3rem;
+  line-height: 1;
+  color: #f3f4f6;
+}
+
+.section-label {
+  margin: 0 0 6px;
+  color: #7dd3fc;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-weight: 700;
+}
+
+.subtitle {
+  margin: 0;
+  max-width: 760px;
+  color: #b5c0d4;
+  font-size: 0.98rem;
+  line-height: 1.6;
+  padding: 0 6px;
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.notification-wrap {
+  position: relative;
+  z-index: 80;
+}
+
+.notification-button {
+  min-height: 50px;
+  min-width: 50px;
+  width: 50px;
+  height: 50px;
+  border-radius: 16px;
+  padding: 0;
+  color: #f3f4f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+}
+
+.notification-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, rgba(51, 65, 85, 0.72), rgba(30, 41, 59, 0.76));
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.notification-icon::before {
+  content: '';
+  position: absolute;
+  left: 10px;
+  top: 8px;
+  width: 12px;
+  height: 10px;
+  border: 2px solid #7dd3fc;
+  border-bottom: 3px solid #7dd3fc;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.notification-icon::after {
+  content: '';
+  position: absolute;
+  left: 14px;
+  bottom: 5px;
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+  background: #7dd3fc;
+}
+
+.panel-label,
+.profile-label {
+  color: #7f8aa3;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+}
+
+.notification-dot {
+  position: absolute;
+  right: 10px;
+  top: 9px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #ef4444;
+  box-shadow: 0 0 0 2px rgba(8, 13, 25, 0.95);
+}
+
+.notification-panel {
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+  width: min(320px, 80vw);
+  border-radius: 18px;
+  padding: 16px;
+  z-index: 9999;
+}
+
+.notification-title {
+  margin: 0 0 12px;
+  color: #f3f4f6;
+  font-weight: 700;
+}
+
+.notification-empty {
+  margin: 0;
+  color: #b5c0d4;
+}
+
+.notification-list {
+  display: grid;
+  gap: 10px;
+  max-height: calc(3 * 76px + 2 * 10px); /* show 3 items at a time */
+  overflow-y: auto;
+  padding-right: 4px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.notification-list::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.notification-item {
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(148, 163, 184, 0.07);
+  transition: opacity 0.2s ease, background 0.2s ease;
+}
+
+.mark-all-read-btn {
+  background: rgba(34, 197, 94, 0.2);
+  border: 1px solid rgba(34, 197, 94, 0.4);
+  color: #22c55e;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  width: 100%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.mark-all-read-btn:hover {
+  background: rgba(34, 197, 94, 0.3);
+  border-color: rgba(34, 197, 94, 0.6);
+}
+
+.notification-item.read {
+  opacity: 0.6;
+  background: rgba(99, 102, 241, 0.08);
+}
+
+.notification-item p {
+  margin: 0 0 6px;
+  color: #f3f4f6;
+  line-height: 1.5;
+}
+
+.notification-item span {
+  color: #7f8aa3;
+  font-size: 0.8rem;
+}
+
+.topbar-panel {
+  min-width: 140px;
+  padding: 12px 14px;
+  border-radius: 16px;
+  display: grid;
+  gap: 4px;
+}
+
+.topbar-panel strong {
+  font-size: 1.3rem;
+  color: #f3f4f6;
+  text-transform: capitalize;
+  line-height: 1.1;
+}
+
+.profile-card {
+  min-width: 0;
+  padding: 0;
+  border-radius: 16px;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+}
+
+.profile-card-compact {
+  width: 50px;
+  height: 50px;
+  padding: 0;
+  justify-content: center;
+  border-radius: 16px;
+}
+
+.avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  color: #ffffff;
+  font-weight: 800;
+  flex: 0 0 auto;
+}
+
+.profile-wrap {
+  position: relative;
+  z-index: 80;
+}
+
+.profile-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  min-width: 170px;
+  padding: 8px;
+  border-radius: 14px;
+  background: rgba(15, 23, 42, 0.94);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  box-shadow: 0 16px 36px rgba(2, 6, 23, 0.34);
+  display: grid;
+  gap: 6px;
+}
+
+.profile-menu-item {
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  background: rgba(255, 255, 255, 0.03);
+  color: #f3f4f6;
+  border-radius: 10px;
+  padding: 9px 10px;
+  text-align: left;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.profile-menu-item:hover {
+  background: rgba(96, 165, 250, 0.12);
+}
+
+.profile-menu-danger:hover {
+  background: rgba(239, 68, 68, 0.15);
+  border-color: rgba(239, 68, 68, 0.35);
+}
+
+@media (max-width: 980px) {
+  .topbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .topbar-left,
+  .topbar-right {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .notification-button,
+  .topbar-panel,
+  .profile-card {
+    width: auto;
+  }
+
+  .notification-button,
+  .profile-card {
+    width: 50px;
+    min-width: 50px;
+  }
+
+  .notification-panel {
+    left: 0;
+    right: auto;
+    width: min(100%, 420px);
+  }
+}
+
+@media (max-width: 640px) {
+  .topbar {
+    padding: 20px 18px;
+  }
+
+  .topbar-left,
+  .topbar-right {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .title-block h2 {
+    font-size: 2.35rem;
+  }
+
+  .notification-button,
+  .topbar-panel,
+  .profile-card {
+    width: 50px;
+    min-width: 50px;
+  }
+}
+
